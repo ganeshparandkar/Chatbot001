@@ -24,7 +24,23 @@ app.post('/webhook',(req,res)=>{
         headers: req.headers,
         body: req.body
     };
+    const messageText = req.body.message.text;
+
+    // Check if the incoming message is "Hii"
+    if (messageText && messageText.toLowerCase() === 'hii') {
+        // Respond with "Hello World" to the chatbot
+        const responseData = {
+            message: {
+                type: 'text',
+                text: 'Hello World'
+            }
+        };
+
+        res.json(responseData);
+    }
+    else{
     res.send(`Hello, this is a POST request to my webhook. data: ${ReqData}`);
+    }
 });
 // Webhook endpoint for receiving messages
 
