@@ -11,6 +11,7 @@ app.get('/webhook',(req,res)=>{
 })
 
 app.post('/webhook',(req,res)=>{
+    console.log(`REQ: ${req}`)
     const data = req.body.payload.payload;
     const userData = req.body.payload;
     const inputdata = data.text;
