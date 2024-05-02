@@ -13,19 +13,31 @@ app.get('/webhook',(req,res)=>{
 })
 
 app.post('/webhook',(req,res)=>{
-    console.log('Request Method:', req.method);
-    console.log('Request URL:', req.url);
-    console.log('Query Parameters:', req.query);
-    console.log('Request Headers:', req.headers);
-    console.log('Request Body:', req.body);
+    if (req.body.payload.payload.text) {
+        const text = req.body.payload.payload.text;
 
-    const ReqData = {
-        method: req.method,
-        url: req.url,
-        queryParameters: req.query,
-        headers: req.headers,
-        body: req.body
-    };
+        if (text == 'hi') {
+            res.send('hi successful!!')
+        } else {
+            res.send('payload is working!')
+        }
+        
+    }
+    res.send('Not working but fine')
+    
+    // console.log('Request Method:', req.method);
+    // console.log('Request URL:', req.url);
+    // console.log('Query Parameters:', req.query);
+    // console.log('Request Headers:', req.headers);
+    // console.log('Request Body:', req.body);
+
+    // const ReqData = {
+    //     method: req.method,
+    //     url: req.url,
+    //     queryParameters: req.query,
+    //     headers: req.headers,
+    //     body: req.body
+    // };
     const messageText = req.body.payload.payload.text;
 
     // Check if the incoming message is "Hii"
