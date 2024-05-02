@@ -6,25 +6,17 @@ const PORT = process.env.PORT || 3000;
 
 // Parse application/json
 app.use(bodyParser.json());
+app.get('/webhook',(req,res)=>{
+    res.send('Hello this is get request to my webhook')
+})
 
-// Webhook endpoint for receiving messages
-app.post('/webhook', (req, res) => {
-  // Extract message text from the request body
-  const messageText = req.body.message.text;
-
-  // Check if the message is "Hii"
-  if (messageText && messageText.toLowerCase() === 'hii') {
-    // Respond with "Hii" message
-    res.json({
-      message: 'Hii'
-    });
-  } else {
-    // Respond with a default message
-    res.json({
-      message: 'Received message'
-    });
-  }
+app.post('/webhook',(req,res)=>{
+    const queryParams = req;
+    console.log(queryParams)
+    res.send(`Hello, this is a POST request to my webhook. Query parameters: ${queryParams}`);
 });
+// Webhook endpoint for receiving messages
+
 
 // Start the server
 app.listen(PORT, () => {
