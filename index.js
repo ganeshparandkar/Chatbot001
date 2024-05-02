@@ -13,7 +13,7 @@ app.get('/webhook',(req,res)=>{
 })
 
 app.post('/webhook',(req,res)=>{
-    res.send('hi')
+    
     if (req.body.payload.payload.text) {
         const text = req.body.payload.payload.text;
 
