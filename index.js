@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Parse application/json
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/webhook',(req,res)=>{
