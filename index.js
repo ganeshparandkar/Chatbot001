@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 // Parse application/json
 app.use(bodyParser.json());
+
 app.get('/webhook',(req,res)=>{
     res.send('Hello this is get request to my webhook')
 })
@@ -24,19 +25,12 @@ app.post('/webhook',(req,res)=>{
         headers: req.headers,
         body: req.body
     };
-    const messageText = req.body.message.text;
+    const messageText = req.body.payload.payload.text;
 
     // Check if the incoming message is "Hii"
     if (messageText && messageText.toLowerCase() === 'hii') {
         // Respond with "Hello World" to the chatbot
-        const responseData = {
-            message: {
-                type: 'text',
-                text: 'Hello World'
-            }
-        };
-
-        res.json(responseData);
+        res.send('Finally Worked');
     }
     else{
     res.send(`Hello, this is a POST request to my webhook. data: ${ReqData}`);
